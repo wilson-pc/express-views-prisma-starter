@@ -5,8 +5,11 @@
 <main class="flex-shrink-0">
     <div class="container">
      
-      <h1 class="mt-5">Express app starter</h1>
-     
+      <h1 class="mt-5">{{message}}</h1>
+
+      @each(user in users)
+      <li> {{ user.email }} </li>
+    @end
     </div>
   </main>
 @end

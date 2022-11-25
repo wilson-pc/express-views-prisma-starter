@@ -38,7 +38,8 @@ app.use((req, res, next) => {
 });
 app.set('views', resolve('views'));
 app.get('/', async (req, res) => {
-  res.render('index', { message: 'hola mundo' });
+  const users = await prisma.user.findMany();
+  res.render('index', { message: 'Express app starter', users });
 });
 app.use('/user', userRoute);
 app.use('/auth', authRoute);
