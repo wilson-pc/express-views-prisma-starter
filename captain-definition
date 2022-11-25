@@ -1,7 +1,7 @@
 {
     "schemaVersion": 2,
     "dockerfileLines": [
-        "FROM node:16.16.0-alpine",
+        "FROM node:16-slim",
         "RUN mkdir -p /usr/src/mvcapp",
         "WORKDIR /usr/src/mvcapp",
         "COPY . /usr/src/mvcapp",
