@@ -4,7 +4,7 @@
         "FROM node:16-buster",
         "RUN mkdir -p /usr/app",
         "WORKDIR /usr/app",
-        "COPY . .",
+        "COPY ./ ./",
         "RUN apt-get update && apt-get install -y g++ gcc openssl make python3",
         "RUN npm install --quiet node-gyp -g",
         "RUN npm install && npm run generate && npm run dist",
