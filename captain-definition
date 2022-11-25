@@ -5,8 +5,6 @@
         "RUN mkdir -p /usr/src/mvcapp",
         "WORKDIR /usr/src/mvcapp",
         "COPY . /usr/src/mvcapp",
-        "RUN apk --no-cache add g++ gcc libgcc libstdc++ linux-headers openssl libressl-dev make python3",
-        "RUN rm -rf /var/cache/apk/*",
         "RUN npm install --quiet node-gyp -g",
         "RUN npm install && npm run generate && npm run dist",
         "ENV NODE_ENV production",
