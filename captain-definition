@@ -1,4 +1,15 @@
 {
     "schemaVersion": 2,
-        "templateId": "node/16.16.0"
+    "dockerfileLines": [
+        "FROM node:16.16.0-alpine",
+        "RUN mkdir -p /usr/src/app",
+        "WORKDIR /usr/src/app",
+        "COPY ./package.json /usr/src/app/",
+        "RUN npm install && npm cache clean --force && npm run dist",
+        "COPY ./ /usr/src/app",
+        "ENV NODE_ENV production",
+        "ENV PORT 80",
+        "EXPOSE 3006",
+        "CMD [ \"npm\", \"start\" ]"
+    ]
 }
