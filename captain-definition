@@ -3,6 +3,7 @@
     "dockerfileLines": [
         "FROM node:16.16.0-alpine",
         "RUN mkdir -p /usr/src/mvcapp",
+        "WORKDIR /usr/src/mvcapp",
         "COPY . /usr/src/mvcapp",
         "RUN npm install && npm cache clean --force && npm run dist",
         "ENV NODE_ENV production",
