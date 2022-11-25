@@ -9,6 +9,8 @@
         "RUN npm install --quiet node-gyp -g",
         "RUN npm install && npm run generate && npm run dist",
         "ENV NODE_ENV production",
+        "ENV PORT 3005",
+        "EXPOSE 3005",
         "CMD [ \"npm\", \"start\" ]"
     ]
 }
