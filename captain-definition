@@ -7,7 +7,7 @@
         "COPY . /usr/src/mvcapp",
         "RUN apk --no-cache add g++ gcc libgcc libstdc++ linux-headers make python3",
         "RUN npm install --quiet node-gyp -g",
-        "RUN npm install && npm cache clean --force && npm run dist",
+        "RUN npm install && npm run generate && npm run dist",
         "ENV NODE_ENV production",
         "CMD [ \"npm\", \"start\" ]"
     ]
