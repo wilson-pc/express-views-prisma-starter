@@ -1,15 +1,14 @@
 {
     "schemaVersion": 2,
-        "dockerfileLines": [
-            "FROM node:16.16.0-alpine",
-            "RUN mkdir -p /usr/src/mvcapp",
-            "WORKDIR /usr/src/mvcapp",
-            "COPY . /usr/src/mvcapp",
-            "RUN apk --no-cache add --virtual native-deps \
-            g++ gcc libgcc libstdc++ linux-headers make python3 && \
-            npm install --quiet node-gyp -g",
-            "RUN npm install && npm cache clean --force && npm run dist",
-            "ENV NODE_ENV production",
-            "CMD [ \"npm\", \"start\" ]"
-        ]
+    "dockerfileLines": [
+        "FROM node:16.16.0-alpine",
+        "RUN mkdir -p /usr/src/mvcapp",
+        "WORKDIR /usr/src/mvcapp",
+        "COPY . /usr/src/mvcapp",
+        "RUN apk --no-cache add g++ gcc libgcc libstdc++ linux-headers make python3",
+        "RUN npm install --quiet node-gyp -g",
+        "RUN npm install && npm cache clean --force && npm run dist",
+        "ENV NODE_ENV production",
+        "CMD [ \"npm\", \"start\" ]"
+    ]
 }
