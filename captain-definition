@@ -1,10 +1,12 @@
 {
     "schemaVersion": 2,
     "dockerfileLines": [
-        "FROM node:16-slim",
+        "FROM node:16-buster",
         "RUN mkdir -p /usr/src/mvcapp",
         "WORKDIR /usr/src/mvcapp",
         "COPY . /usr/src/mvcapp",
+        "RUN apt-get update && apt-get install -y g++ gcc libgcc libstdc++ linux-headers openssl libressl-dev make python3",
+        "RUN rm -rf /var/cache/apk/*",
         "RUN npm install --quiet node-gyp -g",
         "RUN npm install && npm run generate && npm run dist",
         "ENV NODE_ENV production",
