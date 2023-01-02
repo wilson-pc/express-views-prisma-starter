@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { validateEmail, login } from '../services';
 
-export async function loginUser({ body}:Request, res:Response) {
+export async function loginUser({ body }: Request, res: Response) {
   try {
     const { email, password } = body;
     const user = await validateEmail(email);
@@ -47,14 +47,14 @@ export async function loginUser({ body}:Request, res:Response) {
         message: 'User or password incorect',
       });
     }
-  } catch (error:any) {
+  } catch (error: any) {
     res.redirectFlash('/auth/', {
       message: error.message,
     });
   }
 }
 
-export async function logout(_req:Request, res:Response) {
+export async function logout(_req: Request, res: Response) {
   res.clearCookie('user');
   res.redirect('/');
 }

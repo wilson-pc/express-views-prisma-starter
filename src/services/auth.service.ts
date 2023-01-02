@@ -3,17 +3,17 @@ import { compareSync } from 'bcrypt';
 
 const prisma = new PrismaClient();
 
-export async function validateEmail(email:string) {
+export async function validateEmail(email: string) {
   return prisma.user.findUnique({ where: { email } });
 }
 
-export async function login(user:User, password:string) {
+export async function login(user: User, password: string) {
   return new Promise((resolve, reject) => {
     const compare = compareSync(password, user.password);
     if (compare) {
       resolve(user);
     } else {
-      reject(new Error('User or password incorect' ));
+      reject(new Error('User or password incorect'));
     }
   });
 }
