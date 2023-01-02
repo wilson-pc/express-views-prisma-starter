@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { Request, Response } from 'express';
 import { json, urlencoded } from 'body-parser';
 import { resolve } from 'path';
 import cookieParser from 'cookie-parser';
@@ -23,7 +23,7 @@ app.use(
   })
 );
 app.use(redirectFlash());
-app.use((req: any, res, next) => {
+app.use((req: Request, res: Response, next) => {
   if (req.cookies.user) {
     const { user } = req.cookies;
 
