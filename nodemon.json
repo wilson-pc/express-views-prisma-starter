@@ -1,5 +1,8 @@
 {
-  "execMap": {
-    "js": "node -r sucrase/register"
+  "watch": ["src"],
+  "ext": "ts,json",
+  "ignore": ["src/**/*.spec.ts"],
+  "execMap":{
+    "js": "ts-node --transpiler sucrase/ts-node-plugin src/index.ts"
   }
 }

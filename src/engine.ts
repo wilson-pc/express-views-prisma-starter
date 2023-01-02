@@ -1,14 +1,15 @@
 import { Edge } from 'edge.js';
+import { NextFunction, Request } from 'express';
 import { readFile } from 'fs';
 import { join } from 'path';
 
-let edge = null;
+let edge = new Edge();
 
 export const config = ({ cache } = { cache: false }) => {
-  edge = new Edge(cache);
+  edge = new Edge({ cache });
 };
 
-export const engine = (req, res, next) => {
+export const engine = (req: Request, res: any, next: NextFunction) => {
   /*
         |-------------------------------------------------------------------------------------------------
         | Override the app.render function so that we can use dot notation
@@ -17,10 +18,8 @@ export const engine = (req, res, next) => {
 
   const { render } = res;
 
-  res.render = function _render(view, options, callback) {
-    const self = this;
-
-    render.call(self, view.replace(/\./gi, '/'), options, callback);
+  res.render = function _render(view: any, options: any, callback: any) {
+    render.call(this, view.replace(/\./gi, '/'), options, callback);
   };
 
   /*

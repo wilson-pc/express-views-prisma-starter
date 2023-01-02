@@ -1,12 +1,26 @@
-var nodeExternals = require("webpack-node-externals");
+/* eslint-disable @typescript-eslint/no-var-requires */
+const { resolve } = require('path');
+const nodeExternals = require('webpack-node-externals');
 
-const path = require("path");
 module.exports = {
-  entry: "./src/index.js",
+  entry: './src/index.ts',
   output: {
-    filename: "main.js",
-    path: path.resolve(__dirname, "dist"),
+    filename: 'main.js',
+    path: resolve(__dirname, 'dist'),
   },
-  target: "node", // in order to ignore built-in modules like path, fs, etc.
-  externals: [nodeExternals()], // in order to ignore all modules in node_modules folder,
+  module: {
+    rules: [
+      {
+        test: /\.ts$/,
+        exclude: /node_module/,
+        use: 'ts-loader',
+      },
+    ],
+  },
+  resolve: {
+    extensions: ['.ts', '.js'],
+  },
+  target: 'node',
+  mode: 'production',
+  externals: [nodeExternals()],
 };

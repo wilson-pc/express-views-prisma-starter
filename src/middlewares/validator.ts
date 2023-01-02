@@ -1,4 +1,7 @@
-export const validator = (schema) => (req, res, next) => {
+import { NextFunction, Request, Response } from "express";
+import Joi from "joi";
+
+export const validator = (schema:Joi.AnySchema) => (req:Request, res:Response, next:NextFunction) => {
   const { error } = schema.validate(req.body);
   const valid = error == null;
 

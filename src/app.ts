@@ -9,7 +9,6 @@ import { userRoute, authRoute } from './routes';
 import { config, engine } from './engine';
 
 const prisma = new PrismaClient();
-
 const app = express();
 app.use(urlencoded({ extended: false }));
 app.use(json());
@@ -24,7 +23,7 @@ app.use(
   })
 );
 app.use(redirectFlash());
-app.use((req, res, next) => {
+app.use((req: any, res, next) => {
   if (req.cookies.user) {
     const { user } = req.cookies;
 
@@ -35,7 +34,7 @@ app.use((req, res, next) => {
   next();
 });
 app.set('views', resolve('views'));
-app.get('/', async (req, res) => {
+app.get('/', async (_req, res) => {
   const users = await prisma.user.findMany();
   res.render('index', { message: 'Express app starter', users });
 });
