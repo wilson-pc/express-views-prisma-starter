@@ -14,10 +14,15 @@
     "sourceType": "module"
   },
   "rules": {
-    "prettier/prettier": "error",
     "import/prefer-default-export": "off",
     "no-use-before-define": ["error", { "functions": false, "classes": true }],
     "class-methods-use-this": "off",
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto"
+      }
+    ],
     "no-param-reassign": "off",
     "camelcase": "off",
     "no-unused-vars": ["error", { "argsIgnorePattern": "next" }]
